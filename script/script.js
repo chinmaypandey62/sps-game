@@ -6,6 +6,7 @@ const data =
 }
 
 const gameHistory = [];
+let gameHistoryData = ``;
 
 function printOp(element){
     const userMove = new String(element.id);
@@ -63,13 +64,48 @@ function gameSummary ()
 
 function gamesHistory ()
 {
-    gameHistory.push = {
+    gameHistory.push({
         'win' : data.win,
         'loose' : data.loose,
         'tie' : data.tie,
         'games-played' : (data.win + data.loose + data.tie),
+    });
+
+    console.log();
+
+    if(gameHistory.length-1 == 0)
+    {
+        gameHistoryData = 
+        `
+         <tr>
+             <th>Wins</th>
+             <th>Looses</th>
+             <th>Ties</th>
+             <th>Games Played</th>
+         </tr>
+         <tr>
+             <td>${gameHistory[gameHistory.length-1].win}</td>
+             <td>${gameHistory[gameHistory.length-1].loose}</td>
+             <td>${gameHistory[gameHistory.length-1].tie}</td>
+             <td>${gameHistory[gameHistory.length-1]['games-played']}</td>
+         </tr>
+         `
     }
 
-    
+    else
+    {
+        gameHistoryData += 
+        `<tr>
+            <td>${gameHistory[gameHistory.length-1].win}</td>
+            <td>${gameHistory[gameHistory.length-1].loose}</td>
+            <td>${gameHistory[gameHistory.length-1].tie}</td>
+            <td>${gameHistory[gameHistory.length-1]['games-played']}</td>
+        </tr>`
+    }
+
+
+
+    document.getElementById('newData').innerHTML = gameHistoryData;
+
 }
 
